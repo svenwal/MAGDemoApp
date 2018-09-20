@@ -30,7 +30,7 @@
     "oauth": {
         "client": {
             "organization": "Team1",
-            "description": "What is the app used for?",
+            "description": "What is the hallo app used for?",
             "client_name": "Team1Steffen",
             "client_type": "confidential",
             "registered_by": "milst08",
