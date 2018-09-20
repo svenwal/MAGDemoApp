@@ -37,16 +37,52 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_launch" translatesAutoresizingMaskIntoConstraints="NO" id="mXg-p4-Z7i">
+                                <rect key="frame" x="16" y="40" width="343" height="243"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="243" id="FWm-j3-Xu1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1MC-iP-2MU">
+                                <rect key="frame" x="16" y="291" width="343" height="172.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="This is some advertisement text on why our bank is the best. And maybe about this app being very secure since using the ">
+                                        <attributes>
+                                            <font key="NSFont" size="21" name="Avenir-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="CA Mobile API Gateway">
+                                        <attributes>
+                                            <font key="NSFont" size="21" name="Avenir-Heavy"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=". Honestly, I am not very good in wrting such texts...">
+                                        <attributes>
+                                            <font key="NSFont" size="21" name="Avenir-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="mXg-p4-Z7i" secondAttribute="trailing" constant="16" id="AGe-Hd-qZs"/>
+                            <constraint firstItem="mXg-p4-Z7i" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="20" id="Gvs-vZ-KQr"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="gXD-IY-s94" secondAttribute="trailing" constant="16" id="J9b-Pd-ZHs"/>
                             <constraint firstItem="Jrh-22-muF" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="JTh-qH-1jG"/>
+                            <constraint firstItem="1MC-iP-2MU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="Jo6-iJ-5Ny"/>
+                            <constraint firstItem="1MC-iP-2MU" firstAttribute="top" secondItem="mXg-p4-Z7i" secondAttribute="bottom" constant="8" id="YfB-lk-FBp"/>
+                            <constraint firstItem="mXg-p4-Z7i" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="cJk-Yj-B1k"/>
                             <constraint firstAttribute="bottom" secondItem="Jrh-22-muF" secondAttribute="bottom" id="mg8-Ut-5QJ"/>
                             <constraint firstItem="Jrh-22-muF" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="n99-UE-gaj"/>
                             <constraint firstItem="Jrh-22-muF" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="oLS-hp-1ZT"/>
                             <constraint firstItem="gXD-IY-s94" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="pfJ-tl-ebW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="gXD-IY-s94" secondAttribute="bottom" constant="60" id="wRi-Aw-9eT"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="1MC-iP-2MU" secondAttribute="trailing" constant="16" id="wmN-z7-kil"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
@@ -114,9 +150,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back_money" translatesAutoresizingMaskIntoConstraints="NO" id="iwm-CM-QgS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_money" translatesAutoresizingMaskIntoConstraints="NO" id="iwm-CM-QgS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlR-b8-Z1B">
                                 <rect key="frame" x="16" y="41" width="343" height="43"/>
@@ -127,9 +162,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iwm-CM-QgS" firstAttribute="trailing" secondItem="iqh-jk-CQe" secondAttribute="trailing" id="5x5-pj-6cN"/>
                             <constraint firstItem="iqh-jk-CQe" firstAttribute="trailing" secondItem="qlR-b8-Z1B" secondAttribute="trailing" constant="16" id="8k8-eV-4JO"/>
+                            <constraint firstAttribute="bottom" secondItem="iwm-CM-QgS" secondAttribute="bottom" id="A8Z-BD-eix"/>
+                            <constraint firstItem="iwm-CM-QgS" firstAttribute="top" secondItem="g4W-HH-uIr" secondAttribute="top" id="LDI-jX-QPr"/>
                             <constraint firstItem="qlR-b8-Z1B" firstAttribute="top" secondItem="iqh-jk-CQe" secondAttribute="top" constant="21" id="LHK-HD-w0W"/>
                             <constraint firstItem="qlR-b8-Z1B" firstAttribute="leading" secondItem="iqh-jk-CQe" secondAttribute="leading" constant="16" id="txz-Bg-30i"/>
+                            <constraint firstItem="iwm-CM-QgS" firstAttribute="leading" secondItem="iqh-jk-CQe" secondAttribute="leading" id="vDL-ex-fIS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iqh-jk-CQe"/>
                     </view>
@@ -436,6 +475,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back_launch" width="3840" height="3840"/>
         <image name="back_money" width="4961" height="3508"/>
         <image name="home" width="30" height="30"/>
         <image name="money" width="30" height="30"/>

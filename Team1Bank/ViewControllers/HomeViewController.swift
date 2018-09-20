@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var loginButtonOutlet: UIButton!
     
+    var firstStart = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,12 +28,20 @@ class HomeViewController: UIViewController {
         MAS.start(withDefaultConfiguration: true) { (Completed, error) in
             //            MAS.currentStatusToConsole()
         }
-        if MASUser.current() != nil {
-            self.loginSuccessful()
-        }
+
         
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if firstStart {
+            if MASUser.current() != nil {
+                self.loginSuccessful()
+            }
+        }
+        firstStart = false
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,7 +92,7 @@ class HomeViewController: UIViewController {
     func loginSuccessful() {
         // after succesful login
         self.tabBarController?.tabBar.isHidden = false
-          self.loginButtonOutlet.setTitle("Logout", for: .normal)
+        self.loginButtonOutlet.setTitle("Logout", for: .normal)
         
         self.tabBarController?.selectedIndex = 1
         //self.tabBarController?.viewControllers?.remove(at: 0)
