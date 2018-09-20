@@ -445,6 +445,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                         <connections>
+                                            <action selector="tagetAccdidBegin:" destination="fX4-mD-BHl" eventType="editingDidBegin" id="aQz-2C-DQq"/>
                                             <action selector="targetChanged:" destination="fX4-mD-BHl" eventType="valueChanged" id="NgS-lT-xuH"/>
                                             <action selector="targetChanged:" destination="fX4-mD-BHl" eventType="editingDidEnd" id="Upf-Ju-4LU"/>
                                         </connections>

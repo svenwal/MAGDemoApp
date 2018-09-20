@@ -44,18 +44,13 @@ class AccountViewController: UIViewController {
             if error != nil {
                 
             }  else {
-               // self.tabBarController?.viewControllers?.insert(HomeViewController.self(), at: 0)
-                self.tabBarController?.selectedIndex = 0
-                self.tabBarController?.tabBar.isHidden = true
-                
-               
-                
-                
-            }
-        })
+//                self.tabBarController?.viewControllers?.insert(HomeViewController.self(), at: 0)
+//                self.tabBarController?.selectedIndex = 0
+//                self.tabBarController?.tabBar.isHidden = true
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                storyboard.instantiateInitialViewController()
+            }}
+    )
     }
-    
-
-
 }
 
