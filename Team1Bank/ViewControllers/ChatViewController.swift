@@ -23,6 +23,7 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         usernameTextField.placeholder = "Message to?"
         //messageTextField.placeholder = "Enter the message that you want to send"
+       // messageTextField.placeholder = "Type your message here"
         
         // add an observer that is later used to handle incoming messages
         NotificationCenter.default.addObserver(self,
