@@ -82,9 +82,11 @@ class ChatViewController: UIViewController {
 //            print(response)
 //        })
 
+        self.resignFirstResponder()
+        
         MASUser.getUserByUserName(usernameTextField.text!) { (thisUser, error) in
             if error != nil {
-                print("Chat error: \(error)")
+                print("Chat error: \(error!)")
             } else {
                 myUser?.sendMessage(self.messageTextField.text! as NSObject, to: thisUser!, completion: { (success, error) in
                     let response = (success == true) ? "Message sent" : "\(error!)"
