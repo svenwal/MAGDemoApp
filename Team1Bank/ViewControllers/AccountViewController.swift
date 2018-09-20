@@ -33,18 +33,24 @@ class AccountViewController: UIViewController {
         self.tabBarController?.selectedIndex = 4
     }
     
+    @IBAction func chatTouched(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 5
+    }
+    
+    
     @IBAction func logoutTouch(_ sender: Any) {
         MASUser.current()?.logout(true, completion: { (completed, error) in
             
             if error != nil {
                 
             }  else {
+               // self.tabBarController?.viewControllers?.insert(HomeViewController.self(), at: 0)
+                self.tabBarController?.selectedIndex = 0
+                self.tabBarController?.tabBar.isHidden = true
                 
-               // self.tabBarController?.tabBar.isHidden = true
+               
                 
-               // self.tabBarController?.selectedIndex = 0
-                
-               //  self.loginButtonOutlet.setTitle("Log into account", for: .normal)
+              //   self.loginButtonOutlet.setTitle("Log into account", for: .normal)
             }
         })
     }

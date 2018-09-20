@@ -61,11 +61,13 @@ class HomeViewController: UIViewController {
                 if error != nil {
                     
                 }  else {
+                    //self.tabBarController?.viewControllers?.insert(self, at: 0)
                     self.tabBarController?.tabBar.isHidden = true
                     
                     self.tabBarController?.selectedIndex = 0
                     
-                    self.loginButtonOutlet.setTitle("Log into account", for: .normal)
+                     self.loginButtonOutlet.setTitle("Log into account", for: .normal)
+                   
                 }
             })
         }
@@ -80,10 +82,11 @@ class HomeViewController: UIViewController {
     func loginSuccessful() {
         // after succesful login
         self.tabBarController?.tabBar.isHidden = false
+          self.loginButtonOutlet.setTitle("Logout", for: .normal)
         
         self.tabBarController?.selectedIndex = 1
-        
-        self.loginButtonOutlet.setTitle("Logout", for: .normal)
+        //self.tabBarController?.viewControllers?.remove(at: 0)
+      
     }
     
 }

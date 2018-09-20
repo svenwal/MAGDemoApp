@@ -106,6 +106,39 @@
             </objects>
             <point key="canvasLocation" x="868" y="-1118.5907046476761"/>
         </scene>
+        <!--Chat-->
+        <scene sceneID="ga4-QT-e1m">
+            <objects>
+                <viewController id="TjY-KN-ClS" customClass="ChatViewController" customModule="Team1Bank" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g4W-HH-uIr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back_money" translatesAutoresizingMaskIntoConstraints="NO" id="iwm-CM-QgS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlR-b8-Z1B">
+                                <rect key="frame" x="16" y="41" width="343" height="43"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iqh-jk-CQe" firstAttribute="trailing" secondItem="qlR-b8-Z1B" secondAttribute="trailing" constant="16" id="8k8-eV-4JO"/>
+                            <constraint firstItem="qlR-b8-Z1B" firstAttribute="top" secondItem="iqh-jk-CQe" secondAttribute="top" constant="21" id="LHK-HD-w0W"/>
+                            <constraint firstItem="qlR-b8-Z1B" firstAttribute="leading" secondItem="iqh-jk-CQe" secondAttribute="leading" constant="16" id="txz-Bg-30i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iqh-jk-CQe"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="people" badgeValue="1" id="8hR-VC-2ha"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JlY-UQ-gs5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2341.5999999999999" y="-214.54272863568218"/>
+        </scene>
         <!--My Account-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -118,7 +151,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YVC-90-U5B">
-                                <rect key="frame" x="20" y="376" width="335" height="222"/>
+                                <rect key="frame" x="20" y="318" width="335" height="280"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUh-e5-3WN">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
@@ -153,8 +186,19 @@
                                             <action selector="transferMoneyTouch:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="qu1-5p-eIw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyM-bX-Yct">
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcQ-ZF-CWb">
                                         <rect key="frame" x="0.0" y="174" width="335" height="48"/>
+                                        <color key="backgroundColor" red="0.991020546" green="1" blue="0.94477308149999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="26"/>
+                                        <state key="normal" title="Chat">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chatTouched:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="YyR-37-XzG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyM-bX-Yct">
+                                        <rect key="frame" x="0.0" y="232" width="335" height="48"/>
                                         <color key="backgroundColor" red="0.991020546" green="1" blue="0.94477308149999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="26"/>
                                         <state key="normal" title="Logout">
@@ -383,6 +427,7 @@
                         <segue destination="Oha-C5-jhW" kind="relationship" relationship="viewControllers" id="j7j-9b-C6q"/>
                         <segue destination="vgY-ar-IqN" kind="relationship" relationship="viewControllers" id="cwq-dN-hNW"/>
                         <segue destination="fX4-mD-BHl" kind="relationship" relationship="viewControllers" id="awt-g2-uzB"/>
+                        <segue destination="TjY-KN-ClS" kind="relationship" relationship="viewControllers" id="Mvd-FN-WWK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -395,6 +440,7 @@
         <image name="home" width="30" height="30"/>
         <image name="money" width="30" height="30"/>
         <image name="money_bag" width="30" height="30"/>
+        <image name="people" width="30" height="30"/>
         <image name="product" width="30" height="30"/>
         <image name="user_male" width="30" height="30"/>
     </resources>
