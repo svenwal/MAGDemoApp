@@ -69,7 +69,7 @@ class ChatViewController: UIViewController {
             let displayString = "message TO \(myMessage.receiverObjectId!) received FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)"
             
             print(displayString)
-            self.resultTextView.text = self.resultTextView.text  + displayString
+            self.resultTextView.text = self.resultTextView.text  + "\n" + displayString
         }
         )}
     
