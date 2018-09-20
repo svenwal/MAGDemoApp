@@ -39,7 +39,7 @@
                            {
                            "client_id": "48863519-ded5-4d9c-afc9-734da0bdc9e4",
                            "client_secret": "",
-                           "scope": "openid msso phone profile address email msso_register msso_client_register notification mas_messaging",
+                           "scope": "openid msso phone profile address email msso msso_register msso_client_register notification mas_messaging mas_identity mas_identity_retrieve_users",
                            "redirect_uri": "masapp://",
                            "environment": "ALL",
                            "status": "ENABLED",
