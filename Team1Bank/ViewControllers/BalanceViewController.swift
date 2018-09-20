@@ -49,7 +49,7 @@ class BalanceViewController: UIViewController {
             else if error != nil
             {
                 self.balanceOutlet.text = "Not able to connect to backend"
-                print("error when calling API: \(error)")
+                print("error when calling API: \(error!)")
             }
         }
     }
