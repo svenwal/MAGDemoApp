@@ -50,7 +50,7 @@ class AccountViewController: UIViewController {
                 
                
                 
-              //   self.loginButtonOutlet.setTitle("Log into account", for: .normal)
+                
             }
         })
     }

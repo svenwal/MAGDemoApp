@@ -120,16 +120,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RU6-da-GJt">
+                                <rect key="frame" x="24" y="539" width="335" height="48"/>
+                                <color key="backgroundColor" red="0.991020546" green="1" blue="0.94477308149999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="y6y-h0-28J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="26"/>
+                                <state key="normal" title="Transfer Money">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="transferButtonTouched:" destination="Oha-C5-jhW" eventType="touchUpInside" id="szE-fo-2al"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="RU6-da-GJt" firstAttribute="leading" secondItem="W0t-wq-4Zy" secondAttribute="leading" constant="24" id="Cl1-7W-ocV"/>
                             <constraint firstItem="fUK-kj-QNM" firstAttribute="trailing" secondItem="W0t-wq-4Zy" secondAttribute="trailing" id="D0F-KI-8AM"/>
                             <constraint firstItem="fUK-kj-QNM" firstAttribute="leading" secondItem="W0t-wq-4Zy" secondAttribute="leading" id="Edi-th-IFP"/>
                             <constraint firstItem="0X1-xh-ir5" firstAttribute="leading" secondItem="W0t-wq-4Zy" secondAttribute="leading" constant="16" id="HgI-61-bus"/>
+                            <constraint firstItem="W0t-wq-4Zy" firstAttribute="trailing" secondItem="RU6-da-GJt" secondAttribute="trailing" constant="16" id="UEX-gH-guz"/>
                             <constraint firstAttribute="bottom" secondItem="fUK-kj-QNM" secondAttribute="bottom" id="YZ3-90-RUl"/>
                             <constraint firstItem="W0t-wq-4Zy" firstAttribute="trailing" secondItem="0X1-xh-ir5" secondAttribute="trailing" constant="16" id="ZU1-9a-FIE"/>
                             <constraint firstItem="0X1-xh-ir5" firstAttribute="top" secondItem="dD1-hZ-gT8" secondAttribute="top" constant="20" id="wWY-Nr-rvK"/>
                             <constraint firstItem="fUK-kj-QNM" firstAttribute="top" secondItem="dD1-hZ-gT8" secondAttribute="top" id="wuJ-GU-K91"/>
+                            <constraint firstItem="W0t-wq-4Zy" firstAttribute="bottom" secondItem="RU6-da-GJt" secondAttribute="bottom" constant="31" id="y0L-gj-M82"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0t-wq-4Zy"/>
                     </view>

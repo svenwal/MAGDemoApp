@@ -59,6 +59,11 @@ class BalanceViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func transferButtonTouched(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 4
+    }
+    
+    
     
 }
 
