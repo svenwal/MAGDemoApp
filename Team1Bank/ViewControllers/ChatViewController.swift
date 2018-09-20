@@ -30,6 +30,10 @@ class ChatViewController: UIViewController {
             selector: #selector(self.didReceiveMessageNotification(notification:)),
             name: NSNotification.Name(rawValue: MASConnectaMessageReceivedNotification),
             object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didReceiveMessageNotification(notification:)),
+                                               name: NSNotification.Name(rawValue: MASConnectaMessageSentNotification),
+                                               object: nil)
         
         // start the listener
         MASUser.current()!.startListening(toMyMessages: {(success , error)  in
