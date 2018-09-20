@@ -96,6 +96,10 @@ class TransferViewController: UIViewController {
         }
     }
     
+    @IBAction func tagetAccdidBegin(_ sender: Any) {
+        sendMoneyButtonOutlet.isEnabled = true
+        sendMoneyButtonOutlet.alpha = 0.8
+    }
     
     
     @IBAction func sendMoneyTouch(_ sender: Any) {
