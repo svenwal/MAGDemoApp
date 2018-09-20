@@ -35,8 +35,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if firstStart {
-            if MASUser.current() != nil {
-                self.loginSuccessful()
+            if(MASUser.current() != nil)
+            {
+                if (MASUser.current()?.isAuthenticated)!  {
+                    self.loginSuccessful()
+                }
+            
             }
         }
         firstStart = false
@@ -49,24 +53,9 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func loginButtonTouch(_ sender: Any) {
-    
-        if MASUser.current() == nil {
-        MASUser.presentLoginViewController { (success, error) in
-            if(error != nil) {
-                //self.resultTextView.text = "Error logging in: \(error!)"
-            }
-            else
-            {
-                // after succesful login
-               self.loginSuccessful()
-                
-                
-            }
-        }
-        }
-        else
-        {
-            MASUser.current()?.logout(true, completion: { (completed, error) in
+        if MASUser.current() != nil {
+            if (MASUser.current()?.isAuthenticated)! {
+                MASUser.current()?.logout(true, completion: { (completed, error) in
                 
                 if error != nil {
                     
@@ -76,10 +65,43 @@ class HomeViewController: UIViewController {
                     
                     self.tabBarController?.selectedIndex = 0
                     
-                     self.loginButtonOutlet.setTitle("Log into account", for: .normal)
-                   
+                    self.loginButtonOutlet.setTitle("Log into account", for: .normal)
+                    
                 }
             })
+            
+            }
+            else
+            {
+                MASUser.presentLoginViewController { (success, error) in
+                    if(error != nil) {
+                        //self.resultTextView.text = "Error logging in: \(error!)"
+                    }
+                    else
+                    {
+                        // after succesful login
+                        self.loginSuccessful()
+                        
+                        
+                    }
+                }
+            }
+ 
+        }
+        else
+        {
+            MASUser.presentLoginViewController { (success, error) in
+                if(error != nil) {
+                    //self.resultTextView.text = "Error logging in: \(error!)"
+                }
+                else
+                {
+                    // after succesful login
+                    self.loginSuccessful()
+                    
+                    
+                }
+            }
         }
         
   
@@ -92,7 +114,7 @@ class HomeViewController: UIViewController {
     func loginSuccessful() {
         // after succesful login
         self.tabBarController?.tabBar.isHidden = false
-        self.loginButtonOutlet.setTitle("Logout", for: .normal)
+        self.loginButtonOutlet.setTitle("Relogin", for: .normal)
         
         self.tabBarController?.selectedIndex = 1
         //self.tabBarController?.viewControllers?.remove(at: 0)
