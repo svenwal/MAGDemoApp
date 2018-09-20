@@ -1,0 +1,37 @@
+PODS:
+  - MASConnecta (1.8.00):
+    - MASFoundation (= 1.8.00)
+    - MASIdentityManagement (= 1.8.00)
+  - MASFoundation (1.8.00)
+  - MASIdentityManagement (1.8.00):
+    - MASFoundation (= 1.8.00)
+  - MASStorage (1.8.00):
+    - MASFoundation (= 1.8.00)
+  - MASUI (1.8.00):
+    - MASFoundation (= 1.8.00)
+
+DEPENDENCIES:
+  - MASConnecta
+  - MASFoundation
+  - MASIdentityManagement
+  - MASStorage
+  - MASUI
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MASConnecta
+    - MASFoundation
+    - MASIdentityManagement
+    - MASStorage
+    - MASUI
+
+SPEC CHECKSUMS:
+  MASConnecta: 1749b0d9d826e28edd0f25981765f130e8078273
+  MASFoundation: a9ca44f997ec5ad7b5efeafc2f1d7e0ecb234ee8
+  MASIdentityManagement: 78fd4f5d64796a67b07b81bb5f657b3a7081ca26
+  MASStorage: f542a05d71170590dbda9b87bc8fdcac7d722d2c
+  MASUI: 7eddd90d652a312a6a31924c0f080cc654bcffe7
+
+PODFILE CHECKSUM: 7e240022e5df8ed3807d0a2ff905a673b4b92391
+
+COCOAPODS: 1.5.3
