@@ -28,7 +28,7 @@ class ChatViewController: UIViewController {
         // add an observer that is later used to handle incoming messages
         NotificationCenter.default.addObserver(self,
             selector: #selector(self.didReceiveMessageNotification(notification:)),
-            name: NSNotification.Name(rawValue: MASConnectaMessageSentNotification),
+            name: NSNotification.Name(rawValue: MASConnectaMessageReceivedNotification),
             object: nil)
         
         // start the listener
@@ -67,7 +67,7 @@ class ChatViewController: UIViewController {
             
             //weakSelf.profileImage.image = myMessage.payloadTypeAsImage
             //weakSelf.messagePayload.text = myMessage.payloadTypeAsString
-            let displayString = "message TO \(myMessage.receiverObjectId!) received FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)"
+            let displayString = "TO \(myMessage.receiverObjectId!) FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)\n"
             
             print(displayString)
             self.resultTextView.text = self.resultTextView.text  + displayString
