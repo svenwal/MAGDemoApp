@@ -64,6 +64,11 @@ class ChatViewController: UIViewController, UITableViewDataSource {
             print(displayString)
             
             self.chatMessages.append(myMessage)
+            if let tabItems = self.tabBarController?.tabBar.items {
+                // In this case we want to modify the badge number of the third tab:
+                let tabItem = tabItems[3]
+                tabItem.badgeValue = "\(self.chatMessages.count)"
+            }
             self.tableViewOutlet.reloadData()
         }
         )}

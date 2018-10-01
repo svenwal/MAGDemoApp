@@ -343,7 +343,7 @@ Honestly, I am not very good in writing such texts...</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iqh-jk-CQe"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="people" badgeValue="1" id="8hR-VC-2ha"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="people" id="8hR-VC-2ha"/>
                     <connections>
                         <outlet property="messageTextField" destination="6eQ-wf-euu" id="4hR-V3-tHP"/>
                         <outlet property="receipientTextField" destination="S01-HW-cQ9" id="eHG-Gs-NGI"/>
