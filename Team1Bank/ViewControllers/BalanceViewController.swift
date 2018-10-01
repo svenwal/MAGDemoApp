@@ -60,7 +60,7 @@ class BalanceViewController: UIViewController {
     }
     
     @IBAction func transferButtonTouched(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 4
+        self.tabBarController?.selectedIndex = 2
     }
     
     

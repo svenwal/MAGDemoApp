@@ -74,7 +74,7 @@ class ChatViewController: UIViewController {
             let displayString = "TO \(myMessage.receiverObjectId!) FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)\n"
             
             print(displayString)
-            self.resultTextView.text = self.resultTextView.text  + "\n" + displayString
+            self.resultTextView.text = self.resultTextView.text  + displayString
         }
         )}
     

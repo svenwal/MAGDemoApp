@@ -13,6 +13,7 @@
 		903A86352153116D00485A3E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86342153116D00485A3E /* Profile.swift */; };
 		903A86372153180400485A3E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86362153180400485A3E /* Balance.swift */; };
 		903A86392153230800485A3E /* TransferResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86382153230800485A3E /* TransferResult.swift */; };
+		9066118E2161FB3B0009EE2F /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9066118D2161FB3B0009EE2F /* CreditsViewController.swift */; };
 		908A54302152E43E00557927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A542F2152E43E00557927 /* AppDelegate.swift */; };
 		908A54322152E43E00557927 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A54312152E43E00557927 /* HomeViewController.swift */; };
 		908A54342152E43E00557927 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A54332152E43E00557927 /* AccountViewController.swift */; };
@@ -68,6 +69,7 @@
 		903A86342153116D00485A3E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		903A86362153180400485A3E /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		903A86382153230800485A3E /* TransferResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferResult.swift; sourceTree = "<group>"; };
+		9066118D2161FB3B0009EE2F /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		908A542C2152E43E00557927 /* Team1Bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Bank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		908A542F2152E43E00557927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		908A54312152E43E00557927 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				908A54622152F00D00557927 /* TransferViewController.swift */,
 				908A54642152F03300557927 /* BalanceViewController.swift */,
 				9030EAA62154016E00AE8BBE /* ChatViewController.swift */,
+				9066118D2161FB3B0009EE2F /* CreditsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				908A54342152E43E00557927 /* AccountViewController.swift in Sources */,
 				908A54652152F03300557927 /* BalanceViewController.swift in Sources */,
 				908A54632152F00D00557927 /* TransferViewController.swift in Sources */,
+				9066118E2161FB3B0009EE2F /* CreditsViewController.swift in Sources */,
 				903A86352153116D00485A3E /* Profile.swift in Sources */,
 				908A54302152E43E00557927 /* AppDelegate.swift in Sources */,
 				908A54612152EFC600557927 /* ProfileViewController.swift in Sources */,
@@ -682,7 +686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.svenwal.Team1Bank;
+				PRODUCT_BUNDLE_IDENTIFIER = de.svenwal.MAGBank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.svenwal.Team1Bank;
+				PRODUCT_BUNDLE_IDENTIFIER = de.svenwal.MAGBank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
