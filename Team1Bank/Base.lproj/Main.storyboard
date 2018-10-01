@@ -486,7 +486,7 @@ Background images from https://www.pexels.com and licensed under the </string>
                                     <fragment>
                                         <string key="content">Pexels License https://www.pexels.com/photo-license/  
 
-Icons by https://icons8.com lciense under Creative Commons Attribution-NoDerivs 3.0 Unported</string>
+Icons by https://icons8.com licensed under Creative Commons Attribution-NoDerivs 3.0 Unported</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="16" name="HelveticaNeue"/>

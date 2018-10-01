@@ -33,4 +33,4 @@ The awesome "Team 1" :)
 
 Background images from https://www.pexels.com and licensed under the Pexels License https://www.pexels.com/photo-license/  
 
-Icons by https://icons8.com lciense under Creative Commons Attribution-NoDerivs 3.0 Unported
+Icons by https://icons8.com licensed under Creative Commons Attribution-NoDerivs 3.0 Unported
