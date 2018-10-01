@@ -33,11 +33,6 @@ class CreditsViewController: UIViewController, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
-        // check for the url string for performing your own custom actions here
-        let urlString = URL.absoluteString
-        
-        // Return NO if you don't want iOS to open the link
         return true
     }
     

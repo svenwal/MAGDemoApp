@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.loginButtonOutlet.setTitle("Relogin", for: .normal)
         
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 4
         //self.tabBarController?.viewControllers?.remove(at: 0)
       
     }

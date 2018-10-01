@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ChatViewController.swift
 //  Team1Bank
 //
 //  Created by Sven Walther on 19.09.18.
@@ -11,30 +11,29 @@ import MASFoundation
 import MASIdentityManagement
 import MASConnecta
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDataSource {
+
+    @IBOutlet weak var receipientTextField: UITextField!
+    @IBOutlet weak var tableViewOutlet: UITableView!
+    @IBOutlet weak var messageTextField: UITextField!
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var messageTextField: UITextView!
-    @IBOutlet weak var resultTextView: UITextView!
+    var chatMessages: [MASMessage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        usernameTextField.placeholder = "Message to?"
-        //messageTextField.placeholder = "Enter the message that you want to send"
-       // messageTextField.placeholder = "Type your message here"
-        
         // add an observer that is later used to handle incoming messages
         NotificationCenter.default.addObserver(self,
-            selector: #selector(self.didReceiveMessageNotification(notification:)),
-            name: NSNotification.Name(rawValue: MASConnectaMessageReceivedNotification),
-            object: nil)
+                                                selector: #selector(self.didReceiveMessageNotification(notification:)),
+                                                name: NSNotification.Name(rawValue: MASConnectaMessageReceivedNotification),
+                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didReceiveMessageNotification(notification:)),
-                                               name: NSNotification.Name(rawValue: MASConnectaMessageSentNotification),
+                                               name: NSNotification.Name(rawValue:
+                                                    MASConnectaMessageSentNotification),
                                                object: nil)
         
+        MAS.setGatewayNetworkActivityLogging(true)
         // start the listener
         MASUser.current()!.startListening(toMyMessages: {(success , error)  in
             if success {
@@ -43,15 +42,12 @@ class ChatViewController: UIViewController {
                 print(error?.localizedDescription as Any)
             }
         })
-        
-        MAS.setGatewayNetworkActivityLogging(true)
-        
+                
+        tableViewOutlet.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        
-     
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,35 +56,24 @@ class ChatViewController: UIViewController {
     }
 
     @objc  func didReceiveMessageNotification(notification: NSNotification){
-        //
-        //Get the Message Object from the notification
-        //
-        weak var weakSelf = self
-        
         DispatchQueue.main.async(execute: {() -> Void in
             
             let myMessage = notification.userInfo![MASConnectaMessageKey] as! MASMessage
-            
-            //weakSelf.profileImage.image = myMessage.payloadTypeAsImage
-            //weakSelf.messagePayload.text = myMessage.payloadTypeAsString
+
             let displayString = "TO \(myMessage.receiverObjectId!) FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)\n"
-            
             print(displayString)
-            self.resultTextView.text = self.resultTextView.text  + displayString
+            
+            self.chatMessages.append(myMessage)
+            self.tableViewOutlet.reloadData()
         }
         )}
     
     @IBAction func sendMessage(_ sender: Any) {
         let myUser = MASUser.current()
 
-//        myUser?.sendMessage(self.messageTextField.text! as NSObject, to: usernameTextField.text!, completion: { (success, error) in
-//            let response = (success == true) ? "Message sent" : "\(error!)"
-//            print(response)
-//        })
-
         self.resignFirstResponder()
         
-        MASUser.getUserByUserName(usernameTextField.text!) { (thisUser, error) in
+        MASUser.getUserByUserName(receipientTextField.text!) { (thisUser, error) in
             if error != nil {
                 print("Chat error: \(error!)")
             } else {
@@ -101,6 +86,48 @@ class ChatViewController: UIViewController {
         
 
     }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chatMessages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(indexPath.row >= chatMessages.count)
+        {
+            print("Wrong row number detected")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "chatTableCell") as! ChatTableViewCell
+            cell.payloadOutlet?.text = "Something went wrong"
+            return cell
+        }
+        print("Added row to table view")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chatTableCell") as! ChatTableViewCell
+        
+        
+        let message = chatMessages[indexPath.row]
+        print(indexPath.row)
+        print(message.senderTypeAsString())
+        print(message.payloadTypeAsString())
+        
+        let myUser = MASUser.current()
+        if(myUser?.userName == message.senderObjectId) {
+            cell.avatarOutlet.alpha = 0.2
+        }
+        
+        cell.senderOutlet.text = message.senderDisplayName
+        cell.payloadOutlet.text = message.payloadTypeAsString()
+        
+        print(chatMessages)
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
 }
 
 

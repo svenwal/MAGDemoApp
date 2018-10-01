@@ -14,6 +14,7 @@
 		903A86372153180400485A3E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86362153180400485A3E /* Balance.swift */; };
 		903A86392153230800485A3E /* TransferResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86382153230800485A3E /* TransferResult.swift */; };
 		9066118E2161FB3B0009EE2F /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9066118D2161FB3B0009EE2F /* CreditsViewController.swift */; };
+		90661191216212580009EE2F /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90661190216212580009EE2F /* ChatTableViewCell.swift */; };
 		908A54302152E43E00557927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A542F2152E43E00557927 /* AppDelegate.swift */; };
 		908A54322152E43E00557927 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A54312152E43E00557927 /* HomeViewController.swift */; };
 		908A54342152E43E00557927 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A54332152E43E00557927 /* AccountViewController.swift */; };
@@ -70,6 +71,7 @@
 		903A86362153180400485A3E /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		903A86382153230800485A3E /* TransferResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferResult.swift; sourceTree = "<group>"; };
 		9066118D2161FB3B0009EE2F /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		90661190216212580009EE2F /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		908A542C2152E43E00557927 /* Team1Bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Bank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		908A542F2152E43E00557927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		908A54312152E43E00557927 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9066118F216212340009EE2F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90661190216212580009EE2F /* ChatTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		908A54232152E43E00557927 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +183,7 @@
 		908A542E2152E43E00557927 /* Team1Bank */ = {
 			isa = PBXGroup;
 			children = (
+				9066118F216212340009EE2F /* Controllers */,
 				908A54662152F70700557927 /* Team1Bank.entitlements */,
 				908A545F2152EF8F00557927 /* ViewControllers */,
 				908A542F2152E43E00557927 /* AppDelegate.swift */,
@@ -492,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90661191216212580009EE2F /* ChatTableViewCell.swift in Sources */,
 				908A54342152E43E00557927 /* AccountViewController.swift in Sources */,
 				908A54652152F03300557927 /* BalanceViewController.swift in Sources */,
 				908A54632152F00D00557927 /* TransferViewController.swift in Sources */,
