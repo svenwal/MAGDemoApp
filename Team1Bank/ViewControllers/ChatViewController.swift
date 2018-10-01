@@ -11,7 +11,7 @@ import MASFoundation
 import MASIdentityManagement
 import MASConnecta
 
-class ChatViewController: UIViewController, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var receipientTextField: UITextField!
     @IBOutlet weak var tableViewOutlet: UITableView!
@@ -21,6 +21,9 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        receipientTextField.delegate = self
+        messageTextField.delegate = self
         
         // add an observer that is later used to handle incoming messages
         NotificationCenter.default.addObserver(self,
@@ -132,6 +135,19 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     }
     
     
+    @IBAction func usernameEditingEnd(_ sender: Any) {
+        self.resignFirstResponder()
+    }
+    
+    @IBAction func messageTextEditingEnd(_ sender: Any) {
+        self.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
+    }
     
 }
 

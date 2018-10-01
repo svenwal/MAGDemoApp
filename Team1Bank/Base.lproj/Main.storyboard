@@ -282,7 +282,10 @@ Honestly, I am not very good in writing such texts...</string>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="usernameEditingEnd:" destination="TjY-KN-ClS" eventType="editingDidEnd" id="zDJ-Xb-NcX"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -296,7 +299,10 @@ Honestly, I am not very good in writing such texts...</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="344" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="messageTextEditingEnd:" destination="TjY-KN-ClS" eventType="editingDidEnd" id="uAU-2P-hKx"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0VQ-Fi-U1g">
                                                 <rect key="frame" x="352" y="0.0" width="30" height="30"/>
