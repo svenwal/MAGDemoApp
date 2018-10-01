@@ -37,16 +37,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_launch" translatesAutoresizingMaskIntoConstraints="NO" id="mXg-p4-Z7i">
-                                <rect key="frame" x="16" y="40" width="343" height="243"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="back_launch" translatesAutoresizingMaskIntoConstraints="NO" id="mXg-p4-Z7i">
+                                <rect key="frame" x="16" y="87" width="343" height="196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="243" id="FWm-j3-Xu1"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1MC-iP-2MU">
-                                <rect key="frame" x="16" y="291" width="343" height="172.5"/>
+                                <rect key="frame" x="16" y="337" width="343" height="201"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="This is some advertisement text on why our bank is the best. And maybe about this app being very secure since using the ">
+                                    <fragment>
+                                        <string key="content">This is some advertisement text on why our bank is the best.
+And maybe about this app being very secure since using the </string>
                                         <attributes>
                                             <font key="NSFont" size="21" name="Avenir-Medium"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -58,7 +60,9 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=". Honestly, I am not very good in wrting such texts...">
+                                    <fragment>
+                                        <string key="content">.
+Honestly, I am not very good in writing such texts...</string>
                                         <attributes>
                                             <font key="NSFont" size="21" name="Avenir-Medium"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -67,14 +71,26 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAG Demo App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4f-iA-NAP">
+                                <rect key="frame" x="16" y="28" width="343" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42.5" id="R5X-eU-UTL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="mXg-p4-Z7i" secondAttribute="trailing" constant="16" id="AGe-Hd-qZs"/>
-                            <constraint firstItem="mXg-p4-Z7i" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="20" id="Gvs-vZ-KQr"/>
+                            <constraint firstItem="mXg-p4-Z7i" firstAttribute="top" secondItem="P4f-iA-NAP" secondAttribute="topMargin" constant="50" id="Gvs-vZ-KQr"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="gXD-IY-s94" secondAttribute="trailing" constant="16" id="J9b-Pd-ZHs"/>
                             <constraint firstItem="Jrh-22-muF" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="JTh-qH-1jG"/>
                             <constraint firstItem="1MC-iP-2MU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="Jo6-iJ-5Ny"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="P4f-iA-NAP" secondAttribute="trailing" constant="16" id="KEF-MC-Gbi"/>
+                            <constraint firstItem="P4f-iA-NAP" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="8" id="QBL-1f-qZG"/>
+                            <constraint firstItem="P4f-iA-NAP" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="VML-Sz-uem"/>
                             <constraint firstItem="1MC-iP-2MU" firstAttribute="top" secondItem="mXg-p4-Z7i" secondAttribute="bottom" constant="8" id="YfB-lk-FBp"/>
                             <constraint firstItem="mXg-p4-Z7i" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="cJk-Yj-B1k"/>
                             <constraint firstAttribute="bottom" secondItem="Jrh-22-muF" secondAttribute="bottom" id="mg8-Ut-5QJ"/>

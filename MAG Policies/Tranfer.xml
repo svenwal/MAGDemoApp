@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MAG OTP Configuration</Name>
+            <Guid>ae2e93d4-1acf-4931-b01a-8f52407756d6</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require SSL (with Client Certificate)</Name>
+            <Guid>47f768f4-b478-472b-a1ee-10f4b6e76f99</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MSSO Require Registered Device - Mutual SSL</Name>
+            <Guid>ce9faafc-7d76-4818-9c56-0bb9a4b68e9c</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+        <IncludedPolicyReference
+            RefType="com.l7tech.console.policy.exporter.IncludedPolicyReference"
+            guid="fb039f1e-4934-4a42-9b25-9fcccf054b05" included="true"
+            name="transferAmount" soap="false" type="INCLUDE_FRAGMENT">
+            <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+                <wsp:All wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:CustomizeErrorResponse>
+                            <L7p:Content stringValueReference="inline"><![CDATA[{"error" : "456" ,
+"message" : "Missing parameter amount or accountId"
+}]]></L7p:Content>
+                            <L7p:ContentType stringValue="application/json ;charset=UTF-8"/>
+                            <L7p:ExtraHeaders nameValuePairArray="included"/>
+                        </L7p:CustomizeErrorResponse>
+                        <L7p:HtmlFormDataAssertion>
+                            <L7p:AllowGet booleanValue="true"/>
+                            <L7p:AllowPost booleanValue="true"/>
+                            <L7p:FieldSpecs htmlFormFieldSpecArray="included">
+                                <L7p:item htmlFormFieldSpec="included">
+                                    <L7p:AllowEmpty boxedBooleanValue="false"/>
+                                    <L7p:DataType fieldDataType="any"/>
+                                    <L7p:MaxOccurs intValue="1"/>
+                                    <L7p:MinOccurs intValue="1"/>
+                                    <L7p:Name stringValue="fromAccountId"/>
+                                </L7p:item>
+                                <L7p:item htmlFormFieldSpec="included">
+                                    <L7p:AllowEmpty boxedBooleanValue="true"/>
+                                    <L7p:DataType fieldDataType="any"/>
+                                    <L7p:MaxOccurs intValue="1"/>
+                                    <L7p:MinOccurs intValue="1"/>
+                                    <L7p:Name stringValue="toAccountId"/>
+                                </L7p:item>
+                                <L7p:item htmlFormFieldSpec="included">
+                                    <L7p:AllowEmpty boxedBooleanValue="false"/>
+                                    <L7p:DataType fieldDataType="any"/>
+                                    <L7p:MaxOccurs intValue="1"/>
+                                    <L7p:MinOccurs intValue="1"/>
+                                    <L7p:Name stringValue="amount"/>
+                                </L7p:item>
+                            </L7p:FieldSpecs>
+                        </L7p:HtmlFormDataAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLmZyb21BY2NvdW50SWR9"/>
+                            <L7p:VariableToSet stringValue="fromAccountId"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLnRvQWNjb3VudElkfQ=="/>
+                            <L7p:VariableToSet stringValue="toAccountId"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="dGVhbTEtYWNjb3VudC0ke3RvQWNjb3VudElkfQ=="/>
+                            <L7p:VariableToSet stringValue="toKey"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="dGVhbTEtYWNjb3VudC0ke2Zyb21BY2NvdW50SWR9"/>
+                            <L7p:VariableToSet stringValue="fromKey"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLmFtb3VudH0="/>
+                            <L7p:VariableToSet stringValue="amount"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CacheLookup>
+                                <L7p:CacheEntryKey stringValue="${toKey}"/>
+                                <L7p:ContentTypeOverride stringValue=""/>
+                                <L7p:MaxEntryAgeSeconds stringValue="3600"/>
+                                <L7p:OtherTargetMessageVariable stringValue="toAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheLookup>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt0b0FjY291bnRCYWxhbmNlLm1haW5wYXJ0fQ=="/>
+                                <L7p:VariableToSet stringValue="toBalance"/>
+                            </L7p:SetVariable>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="MTAwMDA="/>
+                                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="toBalance"/>
+                            </L7p:SetVariable>
+                            <L7p:CacheStorage>
+                                <L7p:CacheEntryKey stringValue="${toKey}"/>
+                                <L7p:OtherTargetMessageVariable stringValue="toAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheStorage>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="MTAwMDA="/>
+                                <L7p:VariableToSet stringValue="toBalance"/>
+                            </L7p:SetVariable>
+                        </wsp:All>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="Check cache To"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CacheLookup>
+                                <L7p:CacheEntryKey stringValue="${fromKey}"/>
+                                <L7p:ContentTypeOverride stringValue=""/>
+                                <L7p:MaxEntryAgeSeconds stringValue="3600"/>
+                                <L7p:OtherTargetMessageVariable stringValue="fromAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheLookup>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtmcm9tQWNjb3VudEJhbGFuY2UubWFpbnBhcnR9"/>
+                                <L7p:VariableToSet stringValue="fromBalance"/>
+                            </L7p:SetVariable>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="MTAwMDA="/>
+                                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="fromBalance"/>
+                            </L7p:SetVariable>
+                            <L7p:CacheStorage>
+                                <L7p:CacheEntryKey stringValue="${fromKey}"/>
+                                <L7p:OtherTargetMessageVariable stringValue="fromAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheStorage>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="MTAwMDA="/>
+                                <L7p:VariableToSet stringValue="fromBalance"/>
+                            </L7p:SetVariable>
+                        </wsp:All>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="Check cache From"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${fromBalance}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="decimal"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="GE"/>
+                                    <L7p:RightValue stringValue="${amount}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="math"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="$fromBalance - $amount"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHttYXRoLnJlc3VsdH0="/>
+                                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="fromAccountBalance"/>
+                            </L7p:SetVariable>
+                            <L7p:CacheStorage>
+                                <L7p:CacheEntryKey stringValue="${fromKey}"/>
+                                <L7p:OtherTargetMessageVariable stringValue="fromAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheStorage>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="eyJzdGF0dXMiIDogMjAwLAoiYmFsYW5jZSIgOiAiJHtmcm9tQWNjb3VudEJhbGFuY2UubWFpbnBhcnR9In0="/>
+                                <L7p:ResponseContentType stringValue="text/json; charset=UTF-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="math"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="$toBalance + $amount"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHttYXRoLnJlc3VsdH0="/>
+                                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="toAccountBalance"/>
+                            </L7p:SetVariable>
+                            <L7p:CacheStorage>
+                                <L7p:CacheEntryKey stringValue="${toKey}"/>
+                                <L7p:OtherTargetMessageVariable stringValue="toAccountBalance"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheStorage>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CustomizeErrorResponse>
+                                <L7p:Content stringValueReference="inline"><![CDATA[{"error" : "123" ,
+"message" : "Balance below requested transfer amount"
+}]]></L7p:Content>
+                                <L7p:ContentType stringValue="application/json ;charset=UTF-8"/>
+                                <L7p:ExtraHeaders nameValuePairArray="included"/>
+                            </L7p:CustomizeErrorResponse>
+                            <L7p:RaiseError/>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:ExportVariables>
+                        <L7p:ExportedVars stringArrayValue="included"/>
+                    </L7p:ExportVariables>
+                </wsp:All>
+            </wsp:Policy>
+        </IncludedPolicyReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MAG Require OTP</Name>
+            <Guid>657c23a2-7b28-454b-adbd-d7f05f1a6250</Guid>
+        </EncapsulatedAssertionReference>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>2d904ad66fed1166c5dae908e9fb3d26</GOID>
+        </IDProviderReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Fail with error message</Name>
+            <Guid>56bd8147-3ab4-4d09-9460-8b2de02b7a9e</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="MTAw"/>
+                <L7p:Enabled booleanValue="false"/>
+                <L7p:VariableToSet stringValue="amount"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="MTAw"/>
+                <L7p:Enabled booleanValue="false"/>
+                <L7p:VariableToSet stringValue="accountId"/>
+            </L7p:SetVariable>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- This API is used for generating and validating the OTP ---"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- It Requires SSL,OAuth Token, MAG Require OTP ---"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- If OTP is not there in the request, it responds with the channel for the user to choose to send the OTP ---"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- If OTP is there in the request, it validates the OTP against the DB entry and on successful validation, redirects to the requested resource ---"/>
+            </L7p:CommentAssertion>
+            <L7p:CustomizeErrorResponse>
+                <L7p:Content stringValue="${error.msg}"/>
+                <L7p:ContentType stringValue="${content-type}"/>
+                <L7p:ExtraHeaders nameValuePairArray="included">
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Cache-Control"/>
+                        <L7p:Value stringValue="no-store"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Pragma"/>
+                        <L7p:Value stringValue="no-cache"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="x-ca-err"/>
+                        <L7p:Value stringValue="0001${error.code}"/>
+                    </L7p:item>
+                </L7p:ExtraHeaders>
+                <L7p:HttpStatus stringValue="${status}"/>
+            </L7p:CustomizeErrorResponse>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="ae2e93d4-1acf-4931-b01a-8f52407756d6"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="MAG OTP Configuration"/>
+            </L7p:Encapsulated>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="47f768f4-b478-472b-a1ee-10f4b6e76f99"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require SSL (with Client Certificate)"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="apiPrefix"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="requireClientCert"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="ce9faafc-7d76-4818-9c56-0bb9a4b68e9c"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="MSSO Require Registered Device - Mutual SSL"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="lookupDevice"/>
+                        <L7p:value stringValue="true"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="cache_lifetime"/>
+                        <L7p:value stringValue="30"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="given_access_token"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="onetime"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope_fail"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope_required"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:CustomizeErrorResponse>
+                <L7p:Content stringValue="${error.msg}"/>
+                <L7p:ContentType stringValue="${content-type}"/>
+                <L7p:ExtraHeaders nameValuePairArray="included">
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Cache-Control"/>
+                        <L7p:Value stringValue="no-store"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Pragma"/>
+                        <L7p:Value stringValue="no-cache"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="x-ca-err"/>
+                        <L7p:Value stringValue="8000${error.code}"/>
+                    </L7p:item>
+                </L7p:ExtraHeaders>
+                <L7p:HttpStatus stringValue="${status}"/>
+            </L7p:CustomizeErrorResponse>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtzZXNzaW9uLnN1YnNjcmliZXJfaWR9"/>
+                <L7p:VariableToSet stringValue="userid"/>
+            </L7p:SetVariable>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- otp_type can be either 'numerical' or 'alphanumeric' --"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="possible values"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="alphanumeric, numerical"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="JHtkZWZhdWx0T3RwVHlwZX0="/>
+                <L7p:VariableToSet stringValue="otp_type"/>
+            </L7p:SetVariable>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- Maximum OTP length supported is 64 character --"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="possible values"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="4 or 6 or 8"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="JHtkZWZhdWx0T3RwTGVuZ3RofQ=="/>
+                <L7p:VariableToSet stringValue="otp_length"/>
+            </L7p:SetVariable>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="!-- notificationType supported is EMAIL or SMS only --"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="The Delivery channel selected by user"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="EMAIL or SMS"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLlgtT1RQLUNIQU5ORUx9"/>
+                <L7p:VariableToSet stringValue="notificationType"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${notificationType}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue="EMAIL"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="If no channel selected by user then use the default channel"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="Default Delivery Channel is configured in MAG OTP Configuration"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="JHtkZWZhdWx0RGVsaXZlcnlDaGFubmVsfQ=="/>
+                    <L7p:VariableToSet stringValue="notificationType"/>
+                </L7p:SetVariable>
+            </wsp:OneOrMore>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                <L7p:VariableToSet stringValue="updateDb"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="ZmFsc2U="/>
+                <L7p:VariableToSet stringValue="updateOnlyRetryCount"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${request.http.parameter.amount}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="decimal"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Operator operator="LT"/>
+                                    <L7p:RightValue stringValue="500"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:Include>
+                            <L7p:PolicyGuid stringValue="fb039f1e-4934-4a42-9b25-9fcccf054b05"/>
+                        </L7p:Include>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:Encapsulated>
+                            <L7p:EncapsulatedAssertionConfigGuid stringValue="657c23a2-7b28-454b-adbd-d7f05f1a6250"/>
+                            <L7p:EncapsulatedAssertionConfigName stringValue="MAG Require OTP"/>
+                            <L7p:Parameters mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="notificationType"/>
+                                    <L7p:value stringValue="${notificationType}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="otp"/>
+                                    <L7p:value stringValue="${request.http.header.X-OTP}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="updateDb"/>
+                                    <L7p:value stringValue="${updateDb}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="userid"/>
+                                    <L7p:value stringValue="${userid}"/>
+                                </L7p:entry>
+                            </L7p:Parameters>
+                        </L7p:Encapsulated>
+                        <L7p:CommentAssertion>
+                            <L7p:Comment stringValue="OTP was successfully validated, so allow access to protected resource"/>
+                        </L7p:CommentAssertion>
+                        <L7p:Include>
+                            <L7p:PolicyGuid stringValue="fb039f1e-4934-4a42-9b25-9fcccf054b05"/>
+                        </L7p:Include>
+                        <L7p:HardcodedResponse>
+                            <L7p:Base64ResponseBody stringValue="eyAgCiAgICJxdW90ZXMiOlsgIAogICAgICB7ICAKICAgICAgICAgInByb2R1Y3RJRCI6IjEyMzQiLAogICAgICAgICAicHJvZHVjdE5hbWUiOiJDQSBTZXJ2aWNlIERlc2sgRW50ZXJwcmlzZSIsCiAgICAgICAgICJwcmljZSI6IjEwMDAwMCIKICAgICAgfSwKICAgICAgeyAgCiAgICAgICAgICJwcm9kdWN0SUQiOiIxMjM2IiwKICAgICAgICAgInByb2R1Y3ROYW1lIjoiQ0EgU2luZ2xlIFNTTyIsCiAgICAgICAgICJwcmljZSI6IjgwMDAwIgogICAgICB9LAogICAgICB7ICAKICAgICAgICAgInByb2R1Y3RJRCI6IjU2NzgiLAogICAgICAgICAicHJvZHVjdE5hbWUiOiJDQSBNb2JpbGUgQXBwIEFuYWx5dGljcyIsCiAgICAgICAgICJwcmljZSI6IjQwMDAwIgogICAgICB9LAogICAgICB7ICAKICAgICAgICAgInByb2R1Y3RJRCI6Ijk4OTkiLAogICAgICAgICAicHJvZHVjdE5hbWUiOiJDQSBBUEkgTWFuYWdlbWVudCIsCiAgICAgICAgICJwcmljZSI6IjYwMDAwIgogICAgICB9XQp9"/>
+                            <L7p:EarlyResponse booleanValue="true"/>
+                            <L7p:Enabled booleanValue="false"/>
+                            <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+                        </L7p:HardcodedResponse>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtlcnJvci5jb2RlfQ=="/>
+                        <L7p:VariableToSet stringValue="tempCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtzdGF0dXN9"/>
+                        <L7p:VariableToSet stringValue="tempStatus"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtlcnJvci5tc2d9"/>
+                        <L7p:VariableToSet stringValue="tempMsg"/>
+                    </L7p:SetVariable>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${error.code}"/>
+                                <L7p:Expression2 stringValue="140"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="140"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP"/>
+                                <L7p:HeaderValue stringValue="required"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-CHANNEL"/>
+                                <L7p:HeaderValue stringValue="EMAIL,SMS"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// 140"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${error.code}"/>
+                                <L7p:Expression2 stringValue="144"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="144"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP"/>
+                                <L7p:HeaderValue stringValue="invalid"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY"/>
+                                <L7p:HeaderValue stringValue="-1"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY-INTERVAL"/>
+                                <L7p:HeaderValue stringValue="${max_retry_wait_seconds}"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// 144"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${error.code}"/>
+                                <L7p:Expression2 stringValue="142"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="142"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP"/>
+                                <L7p:HeaderValue stringValue="invalid"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY"/>
+                                <L7p:HeaderValue stringValue="${retryCount}"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:CommentAssertion>
+                                <L7p:Comment stringValue="!-- Since LDAP resolution is not supported in SolutionKit Installer, hence create a new LDAP query (with same properties as the one mentioned )here after fresh install ---"/>
+                            </L7p:CommentAssertion>
+                            <L7p:CommentAssertion>
+                                <L7p:Comment stringValue="You can use any Directory Service Providers. As an example LDAP is given below for retrieving Email ID and Mobile Number of the Users"/>
+                            </L7p:CommentAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <L7p:LDAPQuery>
+                                    <L7p:AttrNames stringArrayValue="included">
+                                    <L7p:item stringValue="mail"/>
+                                    <L7p:item stringValue="mobile"/>
+                                    </L7p:AttrNames>
+                                    <L7p:CacheSize intValue="100"/>
+                                    <L7p:Enabled booleanValue="false"/>
+                                    <L7p:LdapProviderOid goidValue="2d904ad66fed1166c5dae908e9fb3d26"/>
+                                    <L7p:QueryMappings queryAttributeMappings="included">
+                                    <L7p:item mapping="included">
+                                    <L7p:AttributeName stringValue="mail"/>
+                                    <L7p:JoinMultivalued booleanValue="false"/>
+
+                                    <L7p:MatchingContextVariableName stringValue="email"/>
+                                    </L7p:item>
+                                    <L7p:item mapping="included">
+                                    <L7p:AttributeName stringValue="mobile"/>
+                                    <L7p:JoinMultivalued booleanValue="false"/>
+
+                                    <L7p:MatchingContextVariableName stringValue="mobile"/>
+                                    </L7p:item>
+                                    </L7p:QueryMappings>
+                                    <L7p:SearchFilter stringValue="uid=${userid}"/>
+                                    <L7p:SearchFilterInjectionProtected booleanValue="true"/>
+                                </L7p:LDAPQuery>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:CommentAssertion>
+                                    <L7p:Comment stringValue="Else manually setting the Email and Mobile as shown below is also fine"/>
+                                    </L7p:CommentAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="c2FtcGxlQGV4YW1wbGUuY29t"/>
+                                    <L7p:VariableToSet stringValue="email"/>
+                                    </L7p:SetVariable>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="KzEtMTIzLTU1NS01NTU1"/>
+                                    <L7p:VariableToSet stringValue="mobile"/>
+                                    </L7p:SetVariable>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt0ZW1wQ29kZX0="/>
+                                <L7p:VariableToSet stringValue="error.code"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt0ZW1wU3RhdHVzfQ=="/>
+                                <L7p:VariableToSet stringValue="status"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt0ZW1wTXNnfQ=="/>
+                                <L7p:VariableToSet stringValue="error.msg"/>
+                            </L7p:SetVariable>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// 142"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${error.code}"/>
+                                <L7p:Expression2 stringValue="143"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="143"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP"/>
+                                <L7p:HeaderValue stringValue="expired"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY"/>
+                                <L7p:HeaderValue stringValue="${retryCount}"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// 143"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${error.code}"/>
+                                <L7p:Expression2 stringValue="145"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="145"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP"/>
+                                <L7p:HeaderValue stringValue="suspended"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY"/>
+                                <L7p:HeaderValue stringValue="-1"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="X-OTP-RETRY-INTERVAL"/>
+                                <L7p:HeaderValue stringValue="${remainingTime}"/>
+                                <L7p:RemoveExisting booleanValue="true"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// 145"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <L7p:TrueAssertion/>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// handle error codes for headers"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="apiPrefix"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="givenErrorCode"/>
+                                <L7p:value stringValue="${error.code}"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// fail with additional headers and regenerate otp if error.code=142"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>
