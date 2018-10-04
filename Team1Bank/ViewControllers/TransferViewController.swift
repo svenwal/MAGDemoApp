@@ -9,7 +9,7 @@
 import UIKit
 import MASFoundation
 
-class TransferViewController: UIViewController {
+class TransferViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var balanceOutlet: UILabel!
     
@@ -165,6 +165,7 @@ class TransferViewController: UIViewController {
         
         if success == true {
             successLabelOutlet.backgroundColor = UIColor(displayP3Red: 1/255, green: 202/255, blue: 1/255, alpha: 0.8)
+            balanceOutlet.backgroundColor = UIColor(displayP3Red: 1/255, green: 202/255, blue: 1/255, alpha: 0.8)
             
         } else {
             successLabelOutlet.backgroundColor = UIColor(displayP3Red: 202/255, green: 1/255, blue: 1/255, alpha: 0.8)
@@ -179,7 +180,14 @@ class TransferViewController: UIViewController {
     
     @objc func hideSuccess() {
         successTimer.invalidate()
-         successLabelOutlet.isHidden = true
+        successLabelOutlet.isHidden = true
+        balanceOutlet.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
     }
     
 }
