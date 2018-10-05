@@ -13,6 +13,7 @@
 		903A86352153116D00485A3E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86342153116D00485A3E /* Profile.swift */; };
 		903A86372153180400485A3E /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86362153180400485A3E /* Balance.swift */; };
 		903A86392153230800485A3E /* TransferResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903A86382153230800485A3E /* TransferResult.swift */; };
+		903F9542216675A000813C1A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903F9541216675A000813C1A /* MapKit.framework */; };
 		9066118E2161FB3B0009EE2F /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9066118D2161FB3B0009EE2F /* CreditsViewController.swift */; };
 		90661191216212580009EE2F /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90661190216212580009EE2F /* ChatTableViewCell.swift */; };
 		908A54302152E43E00557927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A542F2152E43E00557927 /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		903A86342153116D00485A3E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		903A86362153180400485A3E /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		903A86382153230800485A3E /* TransferResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferResult.swift; sourceTree = "<group>"; };
+		903F9541216675A000813C1A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9066118D2161FB3B0009EE2F /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		90661190216212580009EE2F /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		908A542C2152E43E00557927 /* Team1Bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Bank.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				903F9542216675A000813C1A /* MapKit.framework in Frameworks */,
 				92424A0A4363CEC0D13C6342 /* Pods_Team1Bank.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +233,7 @@
 		D5DFA1C67668E3F6402DD29B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				903F9541216675A000813C1A /* MapKit.framework */,
 				E2892B1E358D28AE98C4DFD1 /* Pods_Team1Bank.framework */,
 				2FBB1F5E2D9925243781D0AE /* Pods_Team1BankTests.framework */,
 				3288383AF50231AABB6A84B6 /* Pods_Team1BankUITests.framework */,
@@ -314,6 +318,9 @@
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
