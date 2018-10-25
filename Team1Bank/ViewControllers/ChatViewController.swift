@@ -91,8 +91,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
                 })
             }
         }
-        
-
+        messageTextField.resignFirstResponder()
+        receipientTextField.resignFirstResponder()
     }
     
     
