@@ -107,6 +107,9 @@ class TransferViewController: UIViewController, UITextFieldDelegate  {
         let amount = amountOutlet.text
         let targetAccount = targetAccountOutlet.text
         
+        balanceOutlet.resignFirstResponder()
+        targetAccountOutlet.resignFirstResponder()
+        
         
         let builder = MASRequestBuilder.init(httpMethod: "GET")
         builder.endPoint = "/mws-team1/newtransfer?amount=\(amount!)&toAccountId=\(targetAccount!)&fromAccountId=604"
