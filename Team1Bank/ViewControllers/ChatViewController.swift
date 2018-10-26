@@ -84,7 +84,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
                 {
                     print("Getting user for photo")
                     MASUser.getUserByUserName(myMessage.senderDisplayName!) { (sendingUser, error) in
-                        self.userImages[myMessage.senderDisplayName!] = (sendingUser?.photos?["thumbnail"] as! UIImage)
+                        let avatar = (sendingUser?.photos?["thumbnail"] as? UIImage)
+                        if(avatar != nil) {
+                            self.userImages[myMessage.senderDisplayName!] = avatar
+                        }
+                        else
+                        {
+                            print("No image in LDAP")
+                        }
                         self.tableViewOutlet.reloadData()
                     }
                 }
