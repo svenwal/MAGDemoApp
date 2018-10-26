@@ -18,6 +18,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
     @IBOutlet weak var messageTextField: UITextField!
     
     var chatMessages: [MASMessage] = []
+    var userImages: [String : UIImage] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
             } else {
                 print(error?.localizedDescription as Any)
             }
-        })
+        }) 
+        
+        MASUser.getUserByUserName(MASUser.current()!.userName) { (myUser, error) in
+            self.userImages[MASUser.current()!.userName] = (myUser?.photos?["thumbnail"] as! UIImage)
+        }
                 
         tableViewOutlet.dataSource = self
     }
@@ -60,12 +65,33 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
 
     @objc  func didReceiveMessageNotification(notification: NSNotification){
         DispatchQueue.main.async(execute: {() -> Void in
-            
+            print("Notifcation received")
+            print("Notification content: \(notification)")
             let myMessage = notification.userInfo![MASConnectaMessageKey] as! MASMessage
 
+            if(myMessage.receiverObjectId == nil || myMessage.senderDisplayName == nil || myMessage.payloadTypeAsString() == nil) {
+                print("Mandatory attribute missing in message")
+                return
+            }
+            
             let displayString = "TO \(myMessage.receiverObjectId!) FROM \(myMessage.senderDisplayName!): \(myMessage.payloadTypeAsString()!)\n"
             print(displayString)
             
+                if self.userImages[myMessage.senderDisplayName!] != nil {
+                    print("Photo already cached")
+                }
+                else
+                {
+                    print("Getting user for photo")
+                    MASUser.getUserByUserName(myMessage.senderDisplayName!) { (sendingUser, error) in
+                        self.userImages[myMessage.senderDisplayName!] = (sendingUser?.photos?["thumbnail"] as! UIImage)
+                        self.tableViewOutlet.reloadData()
+                    }
+                }
+            
+            
+ 
+ 
             self.chatMessages.append(myMessage)
             if let tabItems = self.tabBarController?.tabBar.items {
                 // In this case we want to modify the badge number of the third tab:
@@ -85,6 +111,25 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
             if error != nil {
                 print("Chat error: \(error!)")
             } else {
+                if(thisUser == nil) {
+                    print("User not found")
+                    let alert = UIAlertController(title: "User not found", message: "Sorry, we have not been able to find the user with this login", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    return
+                }
+                if(thisUser!.photos?["thumbnail"] != nil) {
+                    if self.userImages[thisUser!.userName] != nil {
+                        // photo already known
+                    }
+                    else
+                    {
+                        self.userImages[thisUser!.userName] = (thisUser!.photos?["thumbnail"] as! UIImage)
+                    }
+                }
+                
+      
                 myUser?.sendMessage(self.messageTextField.text! as NSObject, to: thisUser!, completion: { (success, error) in
                     let response = (success == true) ? "Message sent" : "\(error!)"
                     print(response)
@@ -117,12 +162,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITextFieldDe
         print(message.senderTypeAsString())
         print(message.payloadTypeAsString())
         
+        cell.avatarOutlet.image = self.userImages[message.senderObjectId]
+        
         let myUser = MASUser.current()
         if(myUser?.userName == message.senderObjectId) {
-            cell.avatarOutlet.alpha = 0.2
+            cell.avatarOutlet.alpha = 0.4
+            cell.senderOutlet.text = "To: \(message.receiverObjectId!)"
+        }
+        else
+        {
+            cell.senderOutlet.text = "From: \(message.senderDisplayName!)"
         }
         
-        cell.senderOutlet.text = message.senderDisplayName
+        
         cell.payloadOutlet.text = message.payloadTypeAsString()
         
         print(chatMessages)
